@@ -30,12 +30,15 @@ export default function Home() {
         }
     };
 
+    // 判断是否有数据或错误，决定布局方式
+    const hasContent = data || error;
+
     return (
-        <main className="min-h-screen py-8 px-4">
-            <div className="container-full">
-                <header className="header-compact">
-                    <div className="title-small">IP 风险扫描</div>
-                    <div className="subtitle-small">实时欺诈检测与风险分析</div>
+        <main className={hasContent ? "min-h-screen py-8 px-4" : "min-h-screen flex items-center justify-center px-4"}>
+            <div className={hasContent ? "container-full" : "container-centered"}>
+                <header className={hasContent ? "header-compact" : "header-center"}>
+                    <div className={hasContent ? "title-small" : "title-large"}>IP 风险扫描</div>
+                    <div className={hasContent ? "subtitle-small" : "subtitle-large"}>实时欺诈检测与风险分析</div>
                 </header>
 
                 <SearchInput onSearch={handleSearch} isLoading={isLoading} />
