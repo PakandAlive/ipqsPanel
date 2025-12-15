@@ -34,7 +34,7 @@ export default function Home() {
     const hasContent = data || error;
 
     return (
-        <main className={hasContent ? "min-h-screen py-8 px-4" : "min-h-screen flex items-center justify-center px-4"}>
+        <main className={hasContent ? "main-with-content" : "main-centered"}>
             <div className={hasContent ? "container-full" : "container-centered"}>
                 <header className={hasContent ? "header-compact" : "header-center"}>
                     <div className={hasContent ? "title-small" : "title-large"}>IP 风险扫描</div>
