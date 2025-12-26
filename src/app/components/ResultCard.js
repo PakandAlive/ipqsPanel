@@ -40,11 +40,14 @@ export default function ResultCard({ data }) {
                         color: '#888',
                         fontSize: '0.9rem',
                         marginTop: '0.5rem',
+                        marginBottom: '1rem',
                         fontFamily: 'monospace',
                         background: 'rgba(255,255,255,0.05)',
                         padding: '4px 8px',
                         borderRadius: '4px',
-                        display: 'inline-block'
+                        display: 'inline-block',
+                        wordBreak: 'break-all',
+                        lineHeight: '1.4'
                     }}>
                         {data.host}
                     </div>
