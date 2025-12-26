@@ -593,26 +593,105 @@ body::before {
 
 /* Responsive */
 @media (max-width: 768px) {
-  .container {
-    padding: var(--spacing-md);
+  :root {
+    --spacing-lg: 1.5rem;
+    --spacing-xl: 2rem;
   }
 
+  .main-with-content {
+    padding: 1rem 0.5rem;
+  }
+
+  .container, .container-full {
+    padding: var(--spacing-sm);
+  }
+
+  /* Header adjustments */
+  .title, .title-large {
+    font-size: 2.5rem;
+  }
+  
+  .ip-title {
+    font-size: 1.75rem;
+    word-break: break-all;
+  }
+
+  .subtitle, .subtitle-large {
+    font-size: 1rem;
+  }
+
+  /* Grid adjustments */
   .bento-grid {
     grid-template-columns: 1fr;
+    gap: 1rem;
   }
 
+  .bento-card {
+    padding: 1rem;
+  }
+
+  /* Risk Grid - ensure 2 columns minimal */
   .risk-grid {
     grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+  }
+  
+  .risk-badge {
+    padding: 0.5rem;
+    font-size: 0.8rem;
+  }
+
+  /* Search Input adjustments */
+  .search-wrapper {
+    padding: 0.35rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .search-input {
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    text-align: center;
   }
 
   .search-btn {
     position: static;
     transform: none;
     width: 100%;
-    margin-top: 0.5rem;
+    margin-top: 0;
+    padding: 0.75rem;
   }
 
-  .search-btn:hover:not(:disabled) {
-    transform: scale(1.02);
+  /* Score Display */
+  .score-value {
+    font-size: 4rem;
   }
+  
+  /* Meta Items */
+  .ip-meta {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .meta-item {
+    width: 100%;
+    padding: 0.5rem;
+    font-size: 0.85rem;
+  }
+  
+  /* Detail Rows */
+  .detail-row {
+    padding: 0.6rem 0;
+  }
+  
+  .detail-label, .detail-value {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+    .risk-grid {
+        grid-template-columns: 1fr; /* Single column for very small screens if needed, or keep 2 */
+    }
 }
