@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 
 export async function GET(request) {
     const { searchParams } = new URL(request.url);
-    const ip = searchParams.get('ip');
+    let ip = searchParams.get('ip');
 
     // If IP is not provided in query params, try to detect it
     // Priority: Query Param -> Headers (x-forwarded-for, x-real-ip) -> Request IP -> 127.0.0.1
