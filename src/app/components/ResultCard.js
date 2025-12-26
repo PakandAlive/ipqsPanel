@@ -33,11 +33,11 @@ export default function ResultCard({ data }) {
 
             {/* Header Section */}
             <div className="result-header">
-                <h2 className="ip-title">{data.ip_check || data.host || data.IP || '未知主机'}</h2>
-                {/* Optional: Show Hostname if we are showing IP as title */}
-                {data.host && data.host !== data.ip_check && (
-                    <div className="ip-subtitle" style={{ color: '#888', fontSize: '0.9rem', marginTop: '0.2rem' }}>
-                        {data.host}
+                <h2 className="ip-title">{data.host || data.IP || data.ip_check || '未知主机'}</h2>
+                {/* Show IP if the title is showing the hostname */}
+                {data.host && (data.IP || data.ip_check) && (
+                    <div className="ip-subtitle" style={{ color: '#888', fontSize: '1.1rem', marginTop: '0.5rem', fontFamily: 'monospace' }}>
+                        {data.ip_check || data.IP}
                     </div>
                 )}
                 <div className="ip-meta">
