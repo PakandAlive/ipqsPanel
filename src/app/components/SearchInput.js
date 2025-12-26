@@ -1,9 +1,15 @@
 "use client";
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
-export default function SearchInput({ onSearch, isLoading }) {
+export default function SearchInput({ onSearch, isLoading, detectedIp }) {
     const [ip, setIp] = useState('');
+
+    useEffect(() => {
+        if (detectedIp && !ip) {
+            setIp(detectedIp);
+        }
+    }, [detectedIp]);
 
     const handleSubmit = (e) => {
         e.preventDefault();

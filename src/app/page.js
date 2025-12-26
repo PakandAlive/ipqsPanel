@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import SearchInput from './components/SearchInput';
 import ResultCard from './components/ResultCard';
 
@@ -15,7 +15,8 @@ export default function Home() {
         setData(null);
 
         try {
-            const res = await fetch(`/api/check?ip=${ip}`);
+            const url = ip ? `/api/check?ip=${ip}` : '/api/check';
+            const res = await fetch(url);
             const result = await res.json();
 
             if (result.success) {
@@ -30,6 +31,11 @@ export default function Home() {
         }
     };
 
+    // Auto-detect IP on load
+    useEffect(() => {
+        handleSearch();
+    }, []);
+
     // 判断是否有数据或错误，决定布局方式
     const hasContent = data || error;
 
@@ -41,7 +47,7 @@ export default function Home() {
                     <div className={hasContent ? "subtitle-small" : "subtitle-large"}>实时欺诈检测与风险分析</div>
                 </header>
 
-                <SearchInput onSearch={handleSearch} isLoading={isLoading} />
+                <SearchInput onSearch={handleSearch} isLoading={isLoading} detectedIp={data?.IP || data?.host} />
 
                 {error && (
                     <div className="error-message animate-fade-in">

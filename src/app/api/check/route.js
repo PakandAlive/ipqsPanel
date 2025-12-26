@@ -4,8 +4,21 @@ export async function GET(request) {
     const { searchParams } = new URL(request.url);
     const ip = searchParams.get('ip');
 
+    // If IP is not provided in query params, try to detect it
+    // Priority: Query Param -> Headers (x-forwarded-for, x-real-ip) -> Request IP -> 127.0.0.1
     if (!ip) {
-        return NextResponse.json({ success: false, message: 'Missing IP address' }, { status: 400 });
+        const forwardedFor = request.headers.get('x-forwarded-for');
+        const realIp = request.headers.get('x-real-ip');
+
+        if (forwardedFor) {
+            ip = forwardedFor.split(',')[0].trim();
+        } else if (realIp) {
+            ip = realIp;
+        } else if (request.ip) {
+            ip = request.ip;
+        } else {
+            ip = '127.0.0.1'; // Fallback for local dev
+        }
     }
 
     // Configuration
