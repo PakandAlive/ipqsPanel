@@ -47,7 +47,7 @@ export default function Home() {
                     <div className={hasContent ? "subtitle-small" : "subtitle-large"}>实时欺诈检测与风险分析</div>
                 </header>
 
-                <SearchInput onSearch={handleSearch} isLoading={isLoading} detectedIp={data?.IP || data?.host} />
+                <SearchInput onSearch={handleSearch} isLoading={isLoading} detectedIp={data?.ip_check || data?.IP || data?.host} />
 
                 {error && (
                     <div className="error-message animate-fade-in">

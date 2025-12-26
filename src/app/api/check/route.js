@@ -56,7 +56,8 @@ export async function GET(request) {
         }
 
         const data = await res.json();
-        return NextResponse.json({ success: true, data });
+        // Inject the queried IP into the response data so frontend knows exactly what was checked
+        return NextResponse.json({ success: true, data: { ...data, ip_check: ip } });
     } catch (error) {
         console.error('IPQS API Error:', error);
         return NextResponse.json({ success: false, message: 'Failed to fetch IP data' }, { status: 500 });
